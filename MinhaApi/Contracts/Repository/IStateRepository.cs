@@ -1,10 +1,10 @@
-﻿using MinhaApi.Repository;
+﻿using MinhaApi.Entity;
 namespace MinhaApi.Contracts.Repository
 
 {
     public interface IStateRepository
     {
-        Task<IEnumerable<StateRepository>> Get();
-        Task<StateRepository> GetById(int id);
+        Task<IEnumerable<StateEntity>> Get();
+        Task<StateEntity> GetById(int id);
     }
 }
