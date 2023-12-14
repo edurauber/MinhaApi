@@ -20,10 +20,10 @@ namespace MinhaApi.Controllers
             return Ok(await _cityRepository.Get());
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            return Ok(await _cityRepository.GetById(id));
-        }
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> GetById(int id)
+        //{
+        //    return Ok(await _cityRepository.GetById(id));
+        //}
     }
 }

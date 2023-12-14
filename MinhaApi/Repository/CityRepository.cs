@@ -13,10 +13,10 @@ namespace MinhaApi.Repository
             return await GetConnection().QueryAsync<CityEntity>(sql);
         }
 
-        public async Task<CityEntity> GetById(int id)
-        {
-            string sql = "SELECT * FROM city WHERE Id = @id";
-            return await GetConnection().QueryFirstAsync<CityEntity>(sql, new { id });
-        }
+        //public async Task<CityEntity> GetById(int id)
+        //{
+        //    string sql = "SELECT * FROM city WHERE Id = @id";
+        //    return await GetConnection().QueryFirstAsync<CityEntity>(sql, new { id });
+        //}
     }
 }

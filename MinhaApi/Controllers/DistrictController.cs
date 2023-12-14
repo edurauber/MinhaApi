@@ -20,10 +20,12 @@ namespace MinhaApi.Controllers
             return Ok(await _districtRepository.Get());
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            return Ok(await _districtRepository.GetById(id));
-        }
+
+        //Realizado para fins educacionais
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> GetById(int id)
+        //{
+        //    return Ok(await _districtRepository.GetById(id));
+        //}
     }
 }
