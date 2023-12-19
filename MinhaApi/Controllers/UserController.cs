@@ -51,6 +51,19 @@ namespace MinhaApi.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> LogIn(UserLoginDTO user)
+        {
+            try
+            {
+                return Ok(await _userRepository.LogIn(user));
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized("Usuário ou senha incorretos!");
+            }
+        }
 
     }
 }

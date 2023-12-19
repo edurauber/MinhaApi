@@ -48,5 +48,18 @@ namespace MinhaApi.Repository
             ";
             await Execute(sql, user);
         }
+
+        public async Task<UserTokenDTO> LogIn(UserLoginDTO user)
+        {
+            string sql = @"SELECT * FROM user
+                                   WHERE Email = @email 
+                                     AND Password = @password
+                                      ";
+            UserEntity userLogin = await GetConnection().QueryFirstAsync<UserEntity>(sql, user);
+            return new UserTokenDTO
+            {
+                UserToken = Authentication.GenerateToken(userLogin)
+            };
+        }
     }
 }
