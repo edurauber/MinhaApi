@@ -12,8 +12,8 @@ namespace MinhaApi.Repository
         public async Task Add(UserDTO user)
         {
             string sql = @"
-                INSERT INTO USER (Name, Email, Password)
-                            VALUE (@Name, @Email, @Password)
+                INSERT INTO USER (Name, Email, Password, Role)
+                            VALUE (@Name, @Email, @Password, @Role)
             ";
             await Execute(sql, user);
         }
@@ -44,6 +44,7 @@ namespace MinhaApi.Repository
                              SET Name = @Name,
                                  Email = @Email,
                                  Password = @Password
+                                 Role = @Role
                            WHERE Id = @Id
             ";
             await Execute(sql, user);
@@ -52,13 +53,14 @@ namespace MinhaApi.Repository
         public async Task<UserTokenDTO> LogIn(UserLoginDTO user)
         {
             string sql = @"SELECT * FROM user
-                                   WHERE Email = @email 
-                                     AND Password = @password
+                                   WHERE Email = @Email 
+                                     AND Password = @Password
                                       ";
             UserEntity userLogin = await GetConnection().QueryFirstAsync<UserEntity>(sql, user);
             return new UserTokenDTO
             {
-                UserToken = Authentication.GenerateToken(userLogin)
+                Token = Authentication.GenerateToken(userLogin),
+                User = userLogin
             };
         }
     }

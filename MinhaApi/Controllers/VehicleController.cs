@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MinhaApi.Contracts.Repository;
 using MinhaApi.DTO;
 using MinhaApi.Entity;
@@ -18,18 +19,21 @@ namespace MinhaApi.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "default, admin")]
         public async Task<IActionResult> Get()
         {
             return Ok(await _vehicleRepository.Get());
         }
 
         [HttpGet("{licensePlate}")]
+        [Authorize(Roles = "default, admin")]
         public async Task<IActionResult> GetByLicensePlate(string licensePlate) 
         {
             return Ok(await _vehicleRepository.GetByLicensePlate(licensePlate));
         }
 
         [HttpDelete]
+        [Authorize (Roles ="admin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _vehicleRepository.Delete(id);
@@ -37,6 +41,7 @@ namespace MinhaApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "default, admin")]
         public async Task<IActionResult> Create(VehicleDTO vehicle)
         {
             await _vehicleRepository.Create(vehicle);
@@ -44,7 +49,7 @@ namespace MinhaApi.Controllers
         }
 
         [HttpPut]
-
+        [Authorize(Roles = "default, admin")]
         public async Task<IActionResult> Update(VehicleEntity vehicle)
         {
             await _vehicleRepository.Update(vehicle);

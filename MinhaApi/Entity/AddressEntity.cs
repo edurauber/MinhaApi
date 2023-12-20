@@ -9,6 +9,5 @@
         public string? Address2 { get; set; }
         public int District_Id { get; set; }
 
-
     }
 }
